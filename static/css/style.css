@@ -1,0 +1,208 @@
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+body { 
+	font-family: "Open Sans";
+}
+
+ul.index {
+	list-style-type: none;
+	list-style-image: initial;
+	font-size: 25px;
+}
+
+h2.index_title {
+	font-size: 40px;
+	border-bottom: initial;
+	padding-bottom: initial;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: #ff4e00;
+}
+
+a:hover {
+	color: #ca0602;
+}
+
+h2 {
+	font-size: 30px;
+	color: #5296ff;
+	margin-top: 40px;
+	border-bottom: 2px solid #5296ff;
+	padding-bottom: 5px;
+}
+
+h3 {
+	color: #666666;
+}
+
+p {
+	margin-left: 10px;
+}
+
+.text{
+	margin: 0 auto;
+	max-width: 876px;
+}
+
+.header img {
+	display: block;
+	margin: 0 auto;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+@font-face {
+	font-family: "Open Sans";
+	src: url(fonts/OpenSans-Regular.ttf);
+}
+
+.screenshots img {
+	margin-left: 20px;
+	border-style: solid;
+	border-width: 13px;
+	border-color: #5296ff;
+}
+
+.screenshots img:hover {
+	border-color: #256ba4;
+}
+
+code {
+	font-size: 14px;
+	background-color: #eeefff;
+	padding:2px;
+	border-top: solid 1px #ccccff;
+	border-left: solid 2px #ccccff;
+}
+
+
+.os svg,
+.os img {
+	height: 110px;
+	width: 110px;
+	padding: 5px;
+	margin-right: 40px;
+}
+
+.os {
+	display: block;
+	height: 120px;
+	width: 120px;
+	position: relative;
+	float: left;
+	margin: 2.5px;
+}
+
+.os:hover > p {
+	display: block;
+}
+
+.os:hover > img {
+	opacity: 0.8;
+}
+
+.os > p {
+	height: 100%;
+	width: 100%;
+	display: none;
+	clear: both;
+	background: rgba(0, 51, 102, 0.1);
+	bottom: -15px;
+	position: absolute;
+	z-index: 2;
+	margin-left: -5px;
+}
+
+.os > p > a {
+	height: 120px;
+	width: 120px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	color: #fff;
+	background-color: rgba(82, 150, 255, 0.3);
+}
+
+#clear {
+	clear: left;
+}
+
+.button {
+    background-color: #ff4e00;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.box {
+    margin-top: 3%;
+    padding: 15px;
+    border-style: solid;
+    border-width: 0.8px;
+    max-width: 700px;
+}
+
+.center {
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.center-text {
+    text-align: center; 
+}
+
+.audio {
+    margin: 10px auto;
+    width: 320px;
+}
+
+.error {
+    color: red;
+}
+
+.step {
+    font-weight: bold;
+}
+
+.player {
+    width: 95%;
+    padding-top: 3px;
+}
+
+audio::-internal-media-controls-download-button {
+	display-none;
+}
+
+audio::-webkit-media-controls-volume-slider {
+	display: none;
+}
+
+audio::-webkit-media-controls-enclosure {
+	overflow: hidden;
+}

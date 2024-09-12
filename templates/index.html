@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Music similarity survey</title>
+  <link rel='stylesheet' href='static/css/style.css'/>
+  <link rel='icon' href='static/logo/favicon.png'/>
+  <meta name='description' content='MSc Thesis web survey for applications in
+          music similarity'/>
+  </head>
+  <body>
+    <h1>Music similarity web survey</h1>
+    <div class="header">
+      <img src="static/logo/lelelewaves.svg"/>
+    </div>
+    <div class='box text center-text'>
+      In this survey, you will be presented three tracks from your song library.<br />
+      Listen to each of them, and then select the <span class='underline'>odd one out</span>,
+      i.e. the one that feels the less similar to the others. This will be used to then
+      train bliss to know what kind of playlists you like, by performing metric learning.<br />
+      Make sure that you are in an environment where you can listen to music properly
+      and comfortably.<br /><br />
+      All your answers are saved and stored in blissify's local database every time you submit.<br />
+      <form action="{{ url_for('.survey') }}">
+        <span class='center'>
+          <button class='button' type='submit' value='Submit'>Begin!</button>
+        </span>
+      </form>
+    </div>
+  </body>
+</html>

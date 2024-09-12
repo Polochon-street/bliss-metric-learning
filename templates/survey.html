@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Music similarity survey</title>
+  <link rel='stylesheet' href='static/css/style.css'/>
+  <link rel='icon' href='static/logo/favicon.png'/>
+  <meta name='description' content='MSc Thesis web survey for applications in
+        music similarity'/>
+  </head>
+  <body>
+    <h1>Music similarity web survey</h1>
+    <div class="header">
+      <img src="static/logo/lelelewaves.svg"/>
+    </div><br />
+    <div class='box center'>
+      Please listen to these three tracks. When
+      this is done, please choose the excerpt that seems the most dissimilar
+      compared to the other two, i.e. the odd-one-out.<br />
+      <form action='{{ url_for("survey", step=step+1) }}' method='post'>
+        <span class='step'>Round n°{{ step + 1 }}:</span>
+        {{ form.hidden_tag() }}
+        {{ form.song1 }}<br />
+        {{ form.song2 }}
+        {{ form.song3 }}
+        {{ form.picked_song }}
+        {% for error in form.picked_song.errors %}
+          <span class='error'>{{ error }}</span>
+        {% endfor %}
+        <button class='center button' type='submit' value='Submit'>Submit</button>
+      </form>
+    </p>
+  </body>
+</html>
