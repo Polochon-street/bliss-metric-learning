@@ -1,35 +1,28 @@
-from xdg.BaseDirectory import xdg_data_home
+import glob
+import os
+import shutil
+import sqlite3
+from collections import namedtuple
+from random import choice
+
 from flask import Flask, redirect, render_template, request, url_for
-from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from markupsafe import Markup
-from os import listdir
-import sys
-from os.path import isfile, join
-from random import randint, choice
-from sqlalchemy import desc, and_
-from wtforms.fields import HiddenField, RadioField, SelectMultipleField
-from wtforms import widgets
-import sqlite3
-import shutil
-import os
+from wtforms.fields import HiddenField, RadioField
 from wtforms.validators import DataRequired
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Interval, ARRAY
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
-import glob
-from collections import namedtuple
+from xdg.BaseDirectory import xdg_data_home
 
 app = Flask(__name__)
+# Hardcoded, because the app should be run on localhost.
+# CHANGE IT IF YOU'RE GOING TO USE THIS IN PRODUCTION
+# (whatever "production" means for that 🤔)
 app.secret_key = "AKEJkJDkjksjdJDZKJdkjzakjdKAJKJD"
 
 Song = namedtuple("Song", "title artist album")
 
-database_path = os.path.join(xdg_data_home, 'bliss-rs/songs.db')
-con = sqlite3.connect(
-    database_path, check_same_thread=False
-)
+database_path = os.path.join(xdg_data_home, "bliss-rs/songs.db")
+# FIXME: check_same_thread should be True
+con = sqlite3.connect(database_path, check_same_thread=False)
 cur = con.cursor()
 
 songs = cur.execute(
@@ -39,7 +32,6 @@ all_songs = [
     (id, path, title, artist, album)
     for id, path, title, artist, album in songs.fetchall()
 ]
-del cur
 
 
 @app.route("/")
@@ -47,10 +39,7 @@ del cur
 def index():
     if request.method == "POST":
         return redirect(url_for("survey"))
-    return render_template(
-        "index.html",
-        error=False,
-    )
+    return render_template("index.html")
 
 
 @app.route("/end_survey")
@@ -96,7 +85,7 @@ def survey():
             (song1, song2, odd_one_out),
         )
         con.commit()
-        # Not pretty, not secure, must do bette
+        # Not pretty, not secure, must do better
         files_to_delete = glob.glob("static/songs/*")
         for f in files_to_delete:
             os.remove(f)
@@ -125,15 +114,6 @@ def survey():
         form=form,
         step=step,
     )
-
-
-def handle_survey(form):
-    print(
-        "Available choices were {}, {} and {}".format(
-            form.song1, form.song2, form.song3
-        )
-    )
-    print("Odd-one out is {}".format(form.picked_song.data.split()[0]))
 
 
 if __name__ == "__main__":

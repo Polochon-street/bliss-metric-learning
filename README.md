@@ -32,3 +32,5 @@ in blissify's config files.
 
 You can then run `blissify playlist 30 --distance mahalanobis` to make a playlist using your newly trained
 distance metric!
+
+TODO add a section "technical details"
