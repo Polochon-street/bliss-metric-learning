@@ -1,20 +1,15 @@
-import sqlite3
 import json
 import os
-from xdg.BaseDirectory import xdg_data_home
-# Regularization code for the survey (~600 answers).
-# Works best with lambdas between 0 and 0.1.
+import sqlite3
 from datetime import datetime
-import numpy as np
-from sklearn.model_selection import KFold, train_test_split
-from scipy.optimize import approx_fprime, check_grad, minimize
 
+import numpy as np
+from scipy.optimize import minimize
 from scipy.stats import norm
-from scipy.spatial.distance import norm as L2_norm
-import numpy as np
+from sklearn.model_selection import KFold, train_test_split
+from xdg.BaseDirectory import xdg_data_home
 
-
-database_path = os.path.join(xdg_data_home, 'bliss-rs/songs.db')
+database_path = os.path.join(xdg_data_home, "bliss-rs/songs.db")
 con = sqlite3.connect(database_path)
 cur = con.cursor()
 
@@ -150,6 +145,7 @@ def optimize(L0, X, sigma2, l, method):
     L = np.reshape(res.x, [l_dim, l_dim])
     return (res, L)
 
+
 # Methods that converged:
 # - L-BFGS-B
 # - Newton-CG gave best results on survey_features but took forever
@@ -164,8 +160,8 @@ L_init = L0
 
 design, test = train_test_split(X, test_size=0.2)
 
-#lambdas = [10, 50, 100, 200, 500, 1000, 2500, 5000]
-lambdas = [0., 0.001, 0.01, 0.1, 1, 50, 100, 500, 1000, 5000]
+# lambdas = [10, 50, 100, 200, 500, 1000, 2500, 5000]
+lambdas = [0.0, 0.001, 0.01, 0.1, 1, 50, 100, 500, 1000, 5000]
 
 accuracies = [[] for _ in lambdas]
 accuracies_euclidean = []
@@ -222,7 +218,7 @@ with open(config_path, "r") as f:
     config = json.load(f)
 
 with open(config_path, "w") as f:
-    config['m'] = {
+    config["m"] = {
         "v": 1,
         "dim": M.shape,
         "data": M.ravel().tolist(),
@@ -230,6 +226,12 @@ with open(config_path, "w") as f:
     json.dump(config, f, indent=2)
 
 # If you want to load M from the config
-Loaded_M = np.array(config['m']['data']).reshape(config['m']['dim'])
+Loaded_M = np.array(config["m"]["data"]).reshape(config["m"]["dim"])
 
 print(f"Done {datetime.now()}, but was it a success? {res}")
+print(
+    f"""
+      The configuration file has been saved at {config_path}. You can use it
+      using `blissify playlist 300 --mahalanobis`
+      """
+)
