@@ -9,7 +9,11 @@ from scipy.stats import norm
 from sklearn.model_selection import KFold, train_test_split
 from xdg.BaseDirectory import xdg_data_home
 
-database_path = os.path.join(xdg_data_home, "bliss-rs/songs.db")
+config_path = os.path.join(xdg_data_home, "bliss-rs/config.json")
+with open(config_path, "r") as f:
+    config = json.load(f)
+
+database_path = config["database_path"]
 con = sqlite3.connect(database_path)
 cur = con.cursor()
 
@@ -212,10 +216,6 @@ res, L_total = optimize(L_init, X, sigma2, l, method)
 M = L_total.dot(L_total.transpose())
 np.save("L_total", L_total)
 np.save("M", M)
-
-config_path = os.path.join(xdg_data_home, "bliss-rs/config.json")
-with open(config_path, "r") as f:
-    config = json.load(f)
 
 with open(config_path, "w") as f:
     config["m"] = {
