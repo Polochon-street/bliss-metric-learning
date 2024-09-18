@@ -40,6 +40,12 @@
             }
           }
         })
+        // Play on mouse hover
+        for (player of players) {
+          player.addEventListener('mouseover', (ev) => {
+            ev.target.play()
+          })
+        }
       }
     </script>
   </body>
