@@ -29,5 +29,18 @@
         <button class='center button' type='submit' value='Submit'>Submit</button>
       </form>
     </p>
+    <script>
+      var players = document.querySelectorAll('audio')
+      for (player of players) {
+        // Only play one track at a time
+        player.addEventListener('play', (ev) => {
+          for (p of players) {
+            if (p != ev.target) {
+              p.pause()
+            }
+          }
+        })
+      }
+    </script>
   </body>
 </html>
