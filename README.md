@@ -89,7 +89,7 @@ Technicalities
 
 In that specific case, the first process uses what's called "training triplets". The user is presented with three songs they have to listen to, and has to elect the song that is the least similar to the other two - the odd one out. Repeated a couple of times (as many times as possible), we then get a training set of training triplets.
 
-Using these training triplets, it is possible to use metric learning by minimizing an optimization function in order to extract the matrix `M_custom` that will keep as many distances as possible in the training set. Meaning that if A, B, C are three songs, and a user wrote that the song C is the odd one out, `M` will try to verify this equality:
+Using these training triplets, it is possible to use metric learning by minimizing an optimization function in order to extract the matrix `M` that will keep as many distances as possible in the training set. Meaning that if A, B, C are three songs, and a user wrote that the song C is the odd one out, `M` will try to verify this equality:
 
 $d_{M}(A, B) < d_{M}(A, C) \textnormal{ and } d_{M}(A, B) < d_{M}(B, C)$
 
