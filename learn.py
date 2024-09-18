@@ -231,7 +231,7 @@ Loaded_M = np.array(config["m"]["data"]).reshape(config["m"]["dim"])
 print(f"Done {datetime.now()}, but was it a success? {res}")
 print(
     f"""
-      The configuration file has been saved at {config_path}. You can use it
-      using `blissify playlist 300 --mahalanobis`
+The configuration file has been saved at {config_path}. You can use it
+using `blissify playlist 300 --mahalanobis`
       """
 )
