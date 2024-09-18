@@ -1,0 +1,17 @@
+blinker==1.8.2
+click==8.1.7
+Flask==3.0.3
+Flask-WTF==1.2.1
+itsdangerous==2.2.0
+Jinja2==3.1.4
+joblib==1.4.2
+MarkupSafe==2.1.5
+numpy==2.1.1
+pyxdg==0.28
+scikit-learn==1.5.2
+scipy==1.14.1
+threadpoolctl==3.5.0
+Werkzeug==3.0.4
+WTForms==3.1.2
+xdg==6.0.0
+xdg-base-dirs==6.0.1
