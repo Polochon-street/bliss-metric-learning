@@ -74,7 +74,7 @@ For the full details, see https://lelele.io/thesis.pdf, part 4: "Use of survey: 
 
 bliss-rs represents each song as vectors with [NUMBER_FEATURES](https://docs.rs/bliss-audio/0.9.1/bliss_audio/constant.NUMBER_FEATURES.html) floating-point elements. By default, to compute distance between songs, bliss-rs uses the Euclidean distance: the distance between two songs A and B is
 
-$`d_M(A, B) = \sqrt{(A - B)^{T}I(A - B)}`$
+$`d_I(A, B) = \sqrt{(A - B)^{T}I(A - B)}`$
 
 with I the identity matrix. We can then make a playlist by computing the distance between every song, start from a song, and queue the closest songs to this song.
 
