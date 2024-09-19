@@ -26,7 +26,13 @@
         {% for error in form.picked_song.errors %}
           <span class='error'>{{ error }}</span>
         {% endfor %}
-        <button class='center button' type='submit' value='Submit'>Submit</button>
+        <div id='buttons'>
+          <div id='volume-container'>
+           Volume:
+          <input id='volume' type='range' min='0' max='1' step='0.01'>
+          </div>
+          <button class='center button' type='submit' value='Submit'>Submit</button>
+        </div>
       </form>
     </p>
     <script>
@@ -47,6 +53,21 @@
           })
         }
       }
+
+      var volumeEl = document.querySelector('#volume')
+      function setVolume(value) {
+        localStorage.setItem('volume', value)
+        var players = document.querySelectorAll('audio')
+        for (player of players) {
+          player.volume = value
+        }
+      }
+      // "input" = slider movement, "change" = deselected
+      volumeEl.addEventListener('input', (ev) => setVolume(ev.target.value))
+      volumeEl.addEventListener('change', (ev) => setVolume(ev.target.value))
+      var startingVolume = localStorage.getItem('volume') || 1
+      volumeEl.value = startingVolume
+      setVolume(startingVolume)
     </script>
   </body>
 </html>

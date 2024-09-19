@@ -206,3 +206,13 @@ audio::-webkit-media-controls-volume-slider {
 audio::-webkit-media-controls-enclosure {
 	overflow: hidden;
 }
+
+#buttons {
+  position: relative;
+}
+
+#volume-container {
+  position: absolute;
+  top: 30%;  // approximately vertically centered :/
+  accent-color: black;
+}
