@@ -1,4 +1,5 @@
 import glob
+import json
 import os
 import shutil
 import sqlite3
@@ -20,7 +21,11 @@ app.secret_key = "AKEJkJDkjksjdJDZKJdkjzakjdKAJKJD"
 
 Song = namedtuple("Song", "title artist album")
 
-database_path = os.path.join(xdg_data_home, "bliss-rs/songs.db")
+config_path = os.path.join(xdg_data_home, "bliss-rs/config.json")
+with open(config_path, "r") as f:
+    config = json.load(f)
+database_path = config["database_path"]
+
 # FIXME: check_same_thread should be True
 con = sqlite3.connect(database_path, check_same_thread=False)
 cur = con.cursor()
